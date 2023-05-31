@@ -52,6 +52,30 @@ class Database:
         """
         await self.execute(sql, execute=True)
 
+    async def create_table_cotegoris(self):
+        sql = """
+        CREATE TABLE IF NOT EXISTS Cotigoris (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL UNIQUE,
+        description TEXT
+        );
+        """
+        await self.execute(sql, execute=True)
+    
+    async def create_table_product(self):
+        sql = """
+        CREATE TABLE IF NOT EXISTS ProducT (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL UNIQUE,
+        description TEXT NULL,
+        image VARCHAR(255) NOT NULL,
+        price NUMERIC NOT NULL,
+        quantity INTEGER NULL,
+        cat_id INTEGER NOT NULL
+        );
+        """
+        await self.execute(sql, execute=True)
+
     @staticmethod
     def format_args(sql, parameters: dict):
         sql += " AND ".join(
